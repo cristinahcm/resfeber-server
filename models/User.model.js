@@ -1,21 +1,58 @@
-const { Schema, model } = require("mongoose")
+const { Schema, model } = require("mongoose");
+import { createAvatar } from "@dicebear/avatars";
+import * as style from "@dicebear/avatars-identicon-sprites";
 
-// TODO: Please make sure you edit the user model to whatever makes sense in this case
+let svg = createAvatar(style, {
+  seed: "custom-seed",
+  // ... and other options
+});
+
 const userSchema = new Schema(
-	{
-		name: {
-			type: String,
-			// unique: true -> Ideally, should be unique, but its up to you
-		},
-		email: String,
-		password: String,
-	},
-	{
-		// this second object adds extra properties: `createdAt` and `updatedAt`
-		timestamps: true,
-	}
-)
+  {
+    username: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    email: {
+      type: String,
+      unique: true,
+      required: true,
+    },
+    password: {
+      type: String,
+    },
+    picture: {
+      type: String,
+    },
+    interests: [{
+      type: String,
+      enum: [
+        "Aventurer",
+        "Beach",
+        "Culture",
+        "Food",
+        "Nature",
+        "Nightlife",
+        "Shopping",
+      ], 
+    }],
+    gender: {
+      enum: ["Female", "Male", "Other"],
+    },
+    age: {
+      type: Number,
+    },
+    comments: {
+      type: String,
+    },
+  },
+  {
+    // this second object adds extra properties: `createdAt` and `updatedAt`
+    timestamps: true,
+  }
+);
 
-const User = model("User", userSchema)
+const User = model("User", userSchema);
 
-module.exports = User
+module.exports = User;
