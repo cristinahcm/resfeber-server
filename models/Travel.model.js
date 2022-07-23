@@ -4,25 +4,37 @@ const travelSchema = new Schema(
   {
     durationDates: { //we need two fields (start and end) to store the duration of the travel
       type: Date,
-      required: true,
     },
     place: {
       type: String,
-      required: true,
+     
     },
     type: {
       enum: ["Eco, Family, Friends, Only Women"],
-      required: true,
+    
     },
     origin: {
-      type:"Point",
-      coordinates: [],
-      required:true,
+      type: {
+        type: String, 
+        enum: ['Point'], 
+        required: true
+      },
+      coordinates: {
+        type: [Number],
+        required: true
+      }
+      
     },
     destination: {
-      type:"Point",
-      coordinates: [],
-      required:true, //geojson
+      type: {
+        type: String, 
+        enum: ['Point'], 
+        required: true
+      },
+      coordinates: {
+        type: [Number],
+        required: true
+      }
     },
     route: {
       type: String,

@@ -10,7 +10,7 @@ router.use("/auth", authRoutes);
 const travelsRoutes = require("./travels.routes");
 router.use("/travels", travelsRoutes);
 
-const usersRoutes = require("./users.routes");
+const usersRoutes = require("./user.routes");
 router.use("/users", usersRoutes);
 
 module.exports = router;

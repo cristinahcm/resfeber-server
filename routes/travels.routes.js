@@ -69,3 +69,5 @@ router.delete("/delete/:id", isAuthenticated, async (req, res, next) => {
     next(error);
   }
 });
+
+module.exports = router;
