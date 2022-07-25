@@ -2,7 +2,10 @@ const { Schema, model } = require("mongoose");
 
 const travelSchema = new Schema(
   {
-    durationDates: { //we need two fields (start and end) to store the duration of the travel
+    initialDate: { 
+      type: Date,
+    },
+    finalDate: { 
       type: Date,
     },
     place: {
@@ -17,11 +20,11 @@ const travelSchema = new Schema(
       type: {
         type: String, 
         enum: ['Point'], 
-        required: true
+       
       },
       coordinates: {
         type: [Number],
-        required: true
+       
       }
       
     },
@@ -29,15 +32,18 @@ const travelSchema = new Schema(
       type: {
         type: String, 
         enum: ['Point'], 
-        required: true
+       
       },
       coordinates: {
         type: [Number],
-        required: true
+       
       }
     },
     route: {
       type: String,
+    },
+    budget: {
+      type: Number,
     },
     images: {
       type: String,
