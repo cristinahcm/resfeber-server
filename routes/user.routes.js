@@ -13,48 +13,40 @@ router.get("/", isAuthenticated, async (req, res) => {
   }
 });
 
-router.get("/:id", isAuthenticated, async (req, res, next) => {
-  try {
-    const users = await User.findById(req.params.id);
-    const userFiltered = users.filter(
-      (user) =>
-        user.username ||
-        user.email ||
-        user.picture ||
-        user.interests ||
-        user.gender ||
-        user.comments ||
-        user.age
-    );
-    return res.status(200).json(userFiltered);
-  } catch (error) {
-    next(error);
-  }
-});
 
 // router post to use cloudinary
-router.put("/upload", isAuthenticated, async (req, res, next) => {
+// router.post("/upload", async (req, res, next) => {
+//   try {
+//     const { picture } = req.body;
+//     const user = await User.findByIdAndUpdate({
+//       picture,
+//     });
+//     return res.status(200).json(user);
+//   } catch (error) {
+//     next(error);
+//   }
+// });
+
+router.put("/", isAuthenticated, async (req, res, next) => {
   try {
     const { picture } = req.body;
-    const user = await User.findByIdAndUpdate(req.params.id, {
-      picture,
-    });
+    const user = await User.findByIdAndUpdate(
+      req.payload._id,
+      {
+        picture,
+      },
+      { new: true }
+    );
+    console.log(req.payload);
     return res.status(200).json(user);
   } catch (error) {
     next(error);
   }
 });
 
-router.put("/edit/:id", isAuthenticated, async (req, res, next) => {
+router.get("/:id", isAuthenticated, async (req, res, next) => {
   try {
-    const { picture } = req.body;
-    const user = await User.findByIdAndUpdate(
-      req.params.id,
-      {
-        picture,
-      },
-      { new: true }
-    );
+    const user = await User.findById(req.params.id).select("name email picture isFavorite comments gender interests age");
     return res.status(200).json(user);
   } catch (error) {
     next(error);
