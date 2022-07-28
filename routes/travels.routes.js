@@ -5,7 +5,6 @@ const Travel = require("../models/Travel.model");
 
 router.get("/", async (req, res, next) => {
   try {
-
     const travels = await Travel.find();
     return res.status(200).json(travels);
   } catch (error) {
@@ -15,7 +14,17 @@ router.get("/", async (req, res, next) => {
 
 router.post("/upload", async (req, res, next) => {
   try {
-    const {  initialDate, finalDate, place, type, origin, destination, route,budget, images , isPrivate } = req.body;
+    const {
+      initialDate,
+      finalDate,
+      place,
+      type,
+      origin,
+      destination,
+      route,
+      budget,
+      images,
+    } = req.body;
     const travel = await Travel.create({
       initialDate,
       finalDate,
@@ -35,7 +44,8 @@ router.post("/upload", async (req, res, next) => {
 
 router.put("/edit/:id", async (req, res, next) => {
   try {
-    const { dates, place, type, origin, destination, route,budget,  images } = req.body;
+    const { dates, place, type, origin, destination, route, budget, images } =
+      req.body;
     const travel = await Travel.findByIdAndUpdate(
       req.params.id,
       {
