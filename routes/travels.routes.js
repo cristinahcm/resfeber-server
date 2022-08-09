@@ -17,10 +17,9 @@ router.post("/upload", async (req, res, next) => {
     const {
       initialDate,
       finalDate,
-      place,
-      type,
-      origin,
       destination,
+      typeTravel,
+      origin,
       route,
       budget,
       images,
@@ -28,10 +27,9 @@ router.post("/upload", async (req, res, next) => {
     const travel = await Travel.create({
       initialDate,
       finalDate,
-      place,
-      type,
-      origin,
       destination,
+      typeTravel,
+      origin,
       route,
       budget,
       images,
@@ -44,16 +42,15 @@ router.post("/upload", async (req, res, next) => {
 
 router.put("/edit/:id", async (req, res, next) => {
   try {
-    const { dates, place, type, origin, destination, route, budget, images } =
+    const { dates, destination, type, origin, route, budget, images } =
       req.body;
     const travel = await Travel.findByIdAndUpdate(
       req.params.id,
       {
         dates,
-        place,
-        type,
-        origin,
         destination,
+        typeTravel,
+        origin,
         route,
         budget,
         images,

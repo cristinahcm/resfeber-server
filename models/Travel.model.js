@@ -8,36 +8,16 @@ const travelSchema = new Schema(
     finalDate: { 
       type: Date,
     },
-    place: {
+    destination: {
       type: String,
      
     },
-    type: {
-      enum: ["Eco, Family, Friends, Only Women"],
-    
+    typeTravel: {
+      type: String,
+      enum: ["Eco, Family, Friends, Only Women, Solo"],
     },
     origin: {
-      type: {
         type: String, 
-        enum: ['Point'], 
-       
-      },
-      coordinates: {
-        type: [Number],
-       
-      }
-      
-    },
-    destination: {
-      type: {
-        type: String, 
-        enum: ['Point'], 
-       
-      },
-      coordinates: {
-        type: [Number],
-       
-      }
     },
     route: {
       type: String,
