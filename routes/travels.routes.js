@@ -24,6 +24,7 @@ router.post("/upload", async (req, res, next) => {
       budget,
       images,
     } = req.body;
+    console.log(typeTravel);
     const travel = await Travel.create({
       initialDate,
       finalDate,

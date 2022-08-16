@@ -12,10 +12,17 @@ const travelSchema = new Schema(
       type: String,
      
     },
-    typeTravel: {
-      type: String,
-      enum: ["Eco, Family, Friends, Only Women, Solo"],
-    },
+    typeTravel: 
+      {
+        type: String,
+        enum: [
+          "Eco", 
+          "Family", 
+          "Friends", 
+          "Only Women", 
+          "Solo",
+        ],
+      },
     origin: {
         type: String, 
     },
@@ -25,9 +32,9 @@ const travelSchema = new Schema(
     budget: {
       type: Number,
     },
-    images: {
+    images: [{
       type: String,
-    },
+    }],
     isPrivate: {
       type: Boolean,
       default: false,
