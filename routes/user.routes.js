@@ -13,7 +13,6 @@ router.get("/", isAuthenticated, async (req, res) => {
   }
 });
 
-
 // router post to use cloudinary
 // router.post("/upload", async (req, res, next) => {
 //   try {
@@ -27,13 +26,16 @@ router.get("/", isAuthenticated, async (req, res) => {
 //   }
 // });
 
-router.put("/", isAuthenticated, async (req, res, next) => {
+router.put("/edit", isAuthenticated, async (req, res, next) => {
   try {
-    const { picture } = req.body;
+    const { picture, interests, gender, age } = req.body;
     const user = await User.findByIdAndUpdate(
       req.payload._id,
       {
         picture,
+        interests,
+        gender,
+        age,
       },
       { new: true }
     );
@@ -46,7 +48,9 @@ router.put("/", isAuthenticated, async (req, res, next) => {
 
 router.get("/:id", isAuthenticated, async (req, res, next) => {
   try {
-    const user = await User.findById(req.params.id).select("name email picture isFavorite comments gender interests age");
+    const user = await User.findById(req.params.id).select(
+      "name email picture isFavorite comments gender interests age"
+    );
     return res.status(200).json(user);
   } catch (error) {
     next(error);

@@ -5,14 +5,14 @@ const Travel = require("../models/Travel.model");
 
 router.get("/", async (req, res, next) => {
   try {
-    const travels = await Travel.find();
+    const travels = await Travel.find().populate("owner");
     return res.status(200).json(travels);
   } catch (error) {
     next(error);
   }
 });
 
-router.post("/upload", async (req, res, next) => {
+router.post("/upload", isAuthenticated, async (req, res, next) => {
   try {
     const {
       initialDate,
@@ -24,8 +24,8 @@ router.post("/upload", async (req, res, next) => {
       budget,
       images,
     } = req.body;
-    console.log(typeTravel);
     const travel = await Travel.create({
+      owner: req.session.currentUser._id,
       initialDate,
       finalDate,
       destination,
@@ -41,7 +41,7 @@ router.post("/upload", async (req, res, next) => {
   }
 });
 
-router.put("/edit/:id", async (req, res, next) => {
+router.put("/edit/:id", isAuthenticated, async (req, res, next) => {
   try {
     const { dates, destination, type, origin, route, budget, images } =
       req.body;
@@ -64,7 +64,7 @@ router.put("/edit/:id", async (req, res, next) => {
   }
 });
 
-router.get("/:id", async (req, res, next) => {
+router.get("/:id", isAuthenticated, async (req, res, next) => {
   try {
     const travel = await Travel.findById(req.params.id);
     return res.status(200).json(travel);
@@ -73,7 +73,7 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
-router.delete("/delete/:id", async (req, res, next) => {
+router.delete("/delete/:id", isAuthenticated, async (req, res, next) => {
   try {
     const travel = await Travel.findByIdAndDelete(req.params.id);
     return res.status(200).json(travel);

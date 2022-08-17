@@ -2,29 +2,25 @@ const { Schema, model } = require("mongoose");
 
 const travelSchema = new Schema(
   {
-    initialDate: { 
+    owner: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
+    initialDate: {
       type: Date,
     },
-    finalDate: { 
+    finalDate: {
       type: Date,
     },
     destination: {
       type: String,
-     
     },
-    typeTravel: 
-      {
-        type: String,
-        enum: [
-          "Eco", 
-          "Family", 
-          "Friends", 
-          "Only Women", 
-          "Solo",
-        ],
-      },
+    typeTravel: {
+      type: String,
+      enum: ["Eco", "Family", "Friends", "Only Women", "Solo"],
+    },
     origin: {
-        type: String, 
+      type: String,
     },
     route: {
       type: String,
@@ -32,9 +28,11 @@ const travelSchema = new Schema(
     budget: {
       type: Number,
     },
-    images: [{
-      type: String,
-    }],
+    images: [
+      {
+        type: String,
+      },
+    ],
     isPrivate: {
       type: Boolean,
       default: false,

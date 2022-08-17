@@ -7,6 +7,12 @@ const userSchema = new Schema(
 
       unique: true,
     },
+    travels: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Travel",
+      },
+    ],
     email: {
       type: String,
       unique: true,
