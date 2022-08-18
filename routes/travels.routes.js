@@ -3,7 +3,7 @@ const isAuthenticated = require("../middlewares/isAuthenticated");
 const router = express.Router();
 const Travel = require("../models/Travel.model");
 
-router.get("/", async (req, res, next) => {
+router.get("/", isAuthenticated, async (req, res, next) => {
   try {
     const travels = await Travel.find().populate("owner");
     return res.status(200).json(travels);
@@ -24,8 +24,9 @@ router.post("/upload", isAuthenticated, async (req, res, next) => {
       budget,
       images,
     } = req.body;
+    console.log(req.payload);
     const travel = await Travel.create({
-      owner: req.session.currentUser._id,
+      owner: req.payload,
       initialDate,
       finalDate,
       destination,
