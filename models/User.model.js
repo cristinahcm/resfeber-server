@@ -46,7 +46,12 @@ const userSchema = new Schema(
     comments: {
       type: String,
     },
-    isFavorite: [], // your favorites here id
+    isLiked: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Travel",
+      },
+    ], // your favorites here id
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`
