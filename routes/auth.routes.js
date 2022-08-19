@@ -13,7 +13,7 @@ const saltRounds = 10;
  */
 
 router.post("/signup", async (req, res, next) => {
-  const { name, email, password } = req.body;
+  const { name, email, password, gender, age } = req.body;
   console.log(req.body);
   if (email === "" || name === "" || password === "") {
     res
@@ -48,6 +48,8 @@ router.post("/signup", async (req, res, next) => {
       name,
       email,
       password: hashedPass,
+      gender,
+      age,
     });
 
     const user = createdUser.toObject();
