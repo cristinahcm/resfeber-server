@@ -13,19 +13,6 @@ router.get("/", isAuthenticated, async (req, res) => {
   }
 });
 
-// router post to use cloudinary
-// router.post("/upload", async (req, res, next) => {
-//   try {
-//     const { picture } = req.body;
-//     const user = await User.findByIdAndUpdate({
-//       picture,
-//     });
-//     return res.status(200).json(user);
-//   } catch (error) {
-//     next(error);
-//   }
-// });
-
 router.put("/edit", isAuthenticated, async (req, res, next) => {
   try {
     const { picture, interests, gender, age } = req.body;
@@ -51,6 +38,7 @@ router.put("/like/:_id", isAuthenticated, async (req, res, next) => {
     const { isFavorite } = req.body;
     console.log(isFavorite);
     const userCurrent = await User.findById(req.params._id);
+
     const user = await User.findByIdAndUpdate(
       req.params._id,
       {
