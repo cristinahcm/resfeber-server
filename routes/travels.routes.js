@@ -24,7 +24,7 @@ router.post("/upload", isAuthenticated, async (req, res, next) => {
       budget,
       images,
     } = req.body;
-    console.log(req.payload);
+
     const travel = await Travel.create({
       owner: req.payload,
       initialDate,

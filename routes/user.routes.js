@@ -7,7 +7,7 @@ const User = require("../models/User.model");
 router.get("/", isAuthenticated, async (req, res) => {
   try {
     res.status(200).json(req.payload);
-    console.log(req.payload);
+    console.log("users: ", req.payload);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -40,6 +40,25 @@ router.put("/edit", isAuthenticated, async (req, res, next) => {
       { new: true }
     );
     console.log(req.payload);
+    return res.status(200).json(user);
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.put("/like/:_id", isAuthenticated, async (req, res, next) => {
+  try {
+    const { isFavorite } = req.body;
+    console.log(isFavorite);
+    const userCurrent = await User.findById(req.params._id);
+    const user = await User.findByIdAndUpdate(
+      req.params._id,
+      {
+        isFavorite: [...userCurrent.isFavorite, isFavorite],
+      },
+      { new: true }
+    );
+    console.log("like: ", req.payload);
     return res.status(200).json(user);
   } catch (error) {
     next(error);

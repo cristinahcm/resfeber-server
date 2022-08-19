@@ -46,7 +46,7 @@ const userSchema = new Schema(
     comments: {
       type: String,
     },
-    isLiked: [
+    isFavorite: [
       {
         type: Schema.Types.ObjectId,
         ref: "Travel",
