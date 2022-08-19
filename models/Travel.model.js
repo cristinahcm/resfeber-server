@@ -28,11 +28,10 @@ const travelSchema = new Schema(
     budget: {
       type: Number,
     },
-    images: [
-      {
-        type: String,
-      },
-    ],
+    images: {
+      type: String,
+    },
+
     isPrivate: {
       type: Boolean,
       default: false,
