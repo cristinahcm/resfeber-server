@@ -44,7 +44,7 @@ router.post("/upload", isAuthenticated, async (req, res, next) => {
 
 router.put("/edit/:id", isAuthenticated, async (req, res, next) => {
   try {
-    const { dates, destination, type, origin, route, budget, images } =
+    const { dates, destination, typeTravel, origin, route, budget, images } =
       req.body;
     const travel = await Travel.findByIdAndUpdate(
       req.params.id,
