@@ -4,15 +4,6 @@ const router = express.Router();
 const Travel = require("../models/Travel.model");
 const User = require("../models/User.model");
 
-router.get("/", isAuthenticated, async (req, res) => {
-  try {
-    res.status(200).json(req.payload);
-    console.log("users: ", req.payload);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
-
 router.put("/edit", isAuthenticated, async (req, res, next) => {
   try {
     const { picture, interests, gender, age } = req.body;

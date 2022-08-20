@@ -158,3 +158,8 @@ type: Number,
 });
 
 ## links
+
+Deploy : https://resfeber-app.netlify.app/
+
+gitHub server : https://github.com/jferassef/resfeber-server
+gitHub client: https://github.com/cristinahcm/resfeber-client
