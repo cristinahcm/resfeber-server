@@ -51,10 +51,9 @@ const userSchema = new Schema(
         type: Schema.Types.ObjectId,
         ref: "Travel",
       },
-    ], // your favorites here id
+    ],
   },
   {
-    // this second object adds extra properties: `createdAt` and `updatedAt`
     timestamps: true,
   }
 );
