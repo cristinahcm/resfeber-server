@@ -5,7 +5,7 @@ const Travel = require("../models/Travel.model");
 
 router.get("/", isAuthenticated, async (req, res, next) => {
   try {
-    const travels = await Travel.find().populate("owner");
+    const travels = await Travel.find(); // populate owner
     return res.status(200).json(travels);
   } catch (error) {
     next(error);

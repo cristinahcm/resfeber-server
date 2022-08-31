@@ -161,5 +161,7 @@ type: Number,
 
 Deploy : https://resfeber-app.netlify.app/
 
+notion: https://www.notion.so/2237e6f7f235486eac59ca64152da371?v=1599d32d2c5d428ab16748883e6b583a
+
 gitHub server : https://github.com/jferassef/resfeber-server
 gitHub client: https://github.com/cristinahcm/resfeber-client

@@ -27,7 +27,7 @@ router.put("/edit", isAuthenticated, async (req, res, next) => {
 router.put("/like/:_id", isAuthenticated, async (req, res, next) => {
   try {
     const { isFavorite } = req.body;
-    console.log(isFavorite);
+
     const userCurrent = await User.findById(req.params._id);
 
     const user = await User.findByIdAndUpdate(
@@ -37,7 +37,6 @@ router.put("/like/:_id", isAuthenticated, async (req, res, next) => {
       },
       { new: true }
     );
-    console.log("like: ", req.payload);
     return res.status(200).json(user);
   } catch (error) {
     next(error);
